@@ -82,6 +82,12 @@ OtherTab:AddTextbox({
 	Default = "Enter name here",
 	TextDisappear = true,
 	Callback = function(Value)
+		if not game.LocalPlayer.Backpack:FindFirstChild("Remington 870") then
+		   	local GiveGun = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(GiveGun  )	 
+		end
+		wait(.2)
 		local A_1 =  {
 	        [1] =  {
 	        ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-306.78546142578125, -136.98300170898438, 217.06759643554688)), 
@@ -127,7 +133,7 @@ local CharTab = Window:MakeTab({
 	Icon = "rbxassetid://9457123174",
 	PremiumOnly = false
 })
--- CharTab:AddLabel("Character Controls")
+
 CharTab:AddSlider({
 	Name = "Walkspeed",
 	Min = 8,
@@ -139,6 +145,7 @@ CharTab:AddSlider({
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
 	end    
 })
+
 CharTab:AddSlider({
 	Name = "Jump Power",
 	Min = 20,
@@ -151,12 +158,14 @@ CharTab:AddSlider({
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
 	end    
 })
+
 CharTab:AddButton({
     Name = "Sit",
     Callback = function()
         game.Players.LocalPlayer.Character.Humanoid.Sit = true
     end    
 })
+
 CharTab:AddButton({
     Name = "Kill",
     Callback = function()
