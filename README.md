@@ -5,4 +5,4 @@ A basic prison life GUI.
 - Change character properties
 - Kill any player
 
--// More coming soon
+More coming soon
