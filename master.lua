@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroText = "Prison Life - Loading"})
+local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Prison Life - Loading"})
 
 -- Guns Tab
 local GunsTab = Window:MakeTab({
@@ -85,7 +85,7 @@ OtherTab:AddTextbox({
 		if not game.LocalPlayer.Backpack:FindFirstChild("Remington 870") then
 		   	local GiveGun = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP
             local Event = game:GetService("Workspace").Remote.ItemHandler
-            Event:InvokeServer(GiveGun  )	 
+            Event:InvokeServer(GiveGun)	 
 		end
 		wait(.2)
 		local A_1 =  {
