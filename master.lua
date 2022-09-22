@@ -3,74 +3,16 @@ local espLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlex
 
 local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Prison Life - Loading"})
 
-local espLib = {
-    drawings = {},
-    instances = {},
-    espCache = {},
-    chamsCache = {},
-    objectCache = {},
-    conns = {},
-    whitelist = {}, -- insert string that is the player's name you want to whitelist (turns esp color to whitelistColor in options)
-    blacklist = {}, -- insert string that is the player's name you want to blacklist (removes player from esp)
-    options = {
-        enabled = false,
-        minScaleFactorX = 1,
-        maxScaleFactorX = 10,
-        minScaleFactorY = 1,
-        maxScaleFactorY = 10,
-        boundingBox = false, -- WARNING | Significant Performance Decrease when true
-        boundingBoxDescending = true,
-        font = 2,
-        fontSize = 13,
-        limitDistance = false,
-        maxDistance = 1000,
-        visibleOnly = false,
-        teamCheck = false,
-        teamColor = false,
-        fillColor = nil,
-        whitelistColor = Color3.new(1, 0, 0),
-        outOfViewArrows = false,
-        outOfViewArrowsFilled = true,
-        outOfViewArrowsSize = 25,
-        outOfViewArrowsRadius = 100,
-        outOfViewArrowsColor = Color3.new(1, 1, 1),
-        outOfViewArrowsTransparency = 0.5,
-        outOfViewArrowsOutline = true,
-        outOfViewArrowsOutlineFilled = false,
-        outOfViewArrowsOutlineColor = Color3.new(1, 1, 1),
-        outOfViewArrowsOutlineTransparency = 1,
-        names = false,
-        nameTransparency = 1,
-        nameColor = Color3.new(1, 1, 1),
-        boxes = false,
-        boxesTransparency = 1,
-        boxesColor = Color3.new(1, 0, 0),
-        boxFill = false,
-        boxFillTransparency = 0.5,
-        boxFillColor = Color3.new(1, 0, 0),
-        healthBars = false,
-        healthBarsSize = 1,
-        healthBarsTransparency = 1,
-        healthBarsColor = Color3.new(0, 1, 0),
-        healthText = false,
-        healthTextTransparency = 1,
-        healthTextSuffix = "%",
-        healthTextColor = Color3.new(1, 1, 1),
-        distance = false,
-        distanceTransparency = 1,
-        distanceSuffix = " Studs",
-        distanceColor = Color3.new(1, 1, 1),
-        tracers = false,
-        tracerTransparency = 1,
-        tracerColor = Color3.new(1, 1, 1),
-        tracerOrigin = "Bottom", -- Available [Mouse, Top, Bottom]
-        chams = false,
-        chamsFillColor = Color3.new(1, 0, 0),
-        chamsFillTransparency = 0.5,
-        chamsOutlineColor = Color3.new(),
-        chamsOutlineTransparency = 0
-    },
-};
+espLib.options.enabled = false
+espLib.options.outOfViewArrows = false
+espLib.options.outOfViewArrowsOutline = false
+espLib.options.names = false
+espLib.options.boxes = false
+espLib.options.healthBars = false
+espLib.options.healthText = false
+espLib.options.distance = false
+espLib.options.tracers = false
+espLib.options.chams = false
 
 -- Guns Tab
 local GunsTab = Window:MakeTab({
@@ -152,7 +94,7 @@ local TogglesSection = VisualsTab:AddSection({
 })
 
 TogglesSection:AddToggle({
-	Name = "ESP Enabled",
+	Name = "ESP",
 	Default = false,
 	Callback = function(Value)
 		espLib.options.enabled = Value
@@ -199,7 +141,7 @@ TogglesSection:AddToggle({
 	end    
 })
 
-local ColorsSection = Tab:AddSection({
+local ColorsSection = VisualsTab:AddSection({
 	Name = "Color Settings"
 })
 
@@ -247,7 +189,7 @@ OtherTab:AddTextbox({
 	Default = "Enter name here",
 	TextDisappear = true,
 	Callback = function(Value)
-		if not game.LocalPlayer.Backpack:FindFirstChild("Remington 870") then
+		if not game.Players.LocalPlayer.Backpack:FindFirstChild("Remington 870") then
 		   	local GiveGun = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP
             local Event = game:GetService("Workspace").Remote.ItemHandler
             Event:InvokeServer(GiveGun)	 
@@ -338,4 +280,5 @@ CharTab:AddButton({
     end    
 })
 
+espLib:Load()
 OrionLib:Init()
