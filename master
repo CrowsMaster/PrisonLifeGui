@@ -1,3 +1,4 @@
+```lua
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroText = "Prison Life - Loading"})
@@ -165,3 +166,4 @@ CharTab:AddButton({
 })
 
 OrionLib:Init()
+```
