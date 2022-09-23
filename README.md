@@ -7,7 +7,7 @@ A basic prison life GUI.
 - ESP
 - Kill any player
 
-More coming soon
+More coming soon.
 
 ## Use This Code to Execute the GUI
 By doing this you will get all the updates.
