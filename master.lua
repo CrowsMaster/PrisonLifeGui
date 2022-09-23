@@ -239,20 +239,20 @@ OtherTab:AddDropdown({
 	Options = {"Inmates", "Guards", "Criminals"},
 	Callback = function(Value)
 		if Value == "Inmates" then
-		    local PlayerName = game:GetService("Players").LocalPlayer
-            local TeamColor = "Bright orange"
-            local Event = game:GetService("Workspace").Remote.loadchar
-            Event:InvokeServer(PlayerName, TeamColor)
+			local PlayerName = game:GetService("Players").LocalPlayer
+                	local TeamColor = "Bright orange"
+            		local Event = game:GetService("Workspace").Remote.loadchar
+            		Event:InvokeServer(PlayerName, TeamColor)
 		elseif Value == "Guards" then
-            local PlayerName = game:GetService("Players").LocalPlayer
-            local TeamColor = "Bright blue"
-            local Event = game:GetService("Workspace").Remote.loadchar
-            Event:InvokeServer(PlayerName, TeamColor)
+            		local PlayerName = game:GetService("Players").LocalPlayer
+            		local TeamColor = "Bright blue"
+            		local Event = game:GetService("Workspace").Remote.loadchar
+            		Event:InvokeServer(PlayerName, TeamColor)
 		elseif Value == "Criminals" then
-            local PlayerName = game:GetService("Players").LocalPlayer
-            local TeamColor = "Really red"
-            local Event = game:GetService("Workspace").Remote.loadchar
-            Event:InvokeServer(PlayerName, TeamColor)
+            		local PlayerName = game:GetService("Players").LocalPlayer
+            		local TeamColor = "Really red"
+            		local Event = game:GetService("Workspace").Remote.loadchar
+            		Event:InvokeServer(PlayerName, TeamColor)
 		end
 	end    
 })
