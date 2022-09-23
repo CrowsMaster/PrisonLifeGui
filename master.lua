@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local espLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Sirius/request/library/esp/esp.lua'),true))()
 
-local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Prison Life - Welcome", IntroIcon = "rbxassetid://10993876141"})
+local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Welcome", IntroIcon = "rbxassetid://10993876141"})
 
 espLib.options.enabled = false
 espLib.options.outOfViewArrows = false
@@ -163,6 +163,19 @@ ColorsSection:AddColorpicker({
 	end	  
 })
 
+local OtherSection = VisualsTab:AddSection({
+	Name = "Other"
+})
+
+OtherSection:AddDropdown({
+	Name = "Tracers Origin",
+	Default = "Bottom",
+	Options = {"Bottom", "Top", "Mouse"},
+	Callback = function(Value)
+		espLib.options.tracerOrigin = Value
+	end    
+})
+
 -- Other Tab
 local OtherTab = Window:MakeTab({
 	Name = "Other",
@@ -218,6 +231,30 @@ local Event = game:GetService("ReplicatedStorage").ShootEvent
 Event:FireServer(A_1, A_2)
 Event:FireServer(A_1, A_2)
 end
+})
+
+OtherTab:AddDropdown({
+	Name = "Select Team",
+	Default = "",
+	Options = {"Inmates", "Guards", "Criminals"},
+	Callback = function(Value)
+		if Value == "Inmates" then
+		    local PlayerName = game:GetService("Players").LocalPlayer
+            local TeamColor = "Bright orange"
+            local Event = game:GetService("Workspace").Remote.loadchar
+            Event:InvokeServer(PlayerName, TeamColor)
+		elseif Value == "Guards" then
+            local PlayerName = game:GetService("Players").LocalPlayer
+            local TeamColor = "Bright blue"
+            local Event = game:GetService("Workspace").Remote.loadchar
+            Event:InvokeServer(PlayerName, TeamColor)
+		elseif Value == "Criminals" then
+            local PlayerName = game:GetService("Players").LocalPlayer
+            local TeamColor = "Really red"
+            local Event = game:GetService("Workspace").Remote.loadchar
+            Event:InvokeServer(PlayerName, TeamColor)
+		end
+	end    
 })
 
 --Char Tab
