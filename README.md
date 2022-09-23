@@ -3,6 +3,7 @@ A basic prison life GUI.
 
 - Get guns and melee weapons
 - Change character properties
+- Change between teams
 - ESP
 - Kill any player
 
