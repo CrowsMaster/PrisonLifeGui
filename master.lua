@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local espLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Sirius/request/library/esp/esp.lua'),true))()
 
-local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Prison Life - Loading"})
+local Window = OrionLib:MakeWindow({Name = "Prison Life", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Prison Life - Welcome", IntroIcon = "rbxassetid://10993876141"})
 
 espLib.options.enabled = false
 espLib.options.outOfViewArrows = false
@@ -98,30 +98,8 @@ TogglesSection:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		espLib.options.enabled = Value
-	end    
-})
-
-TogglesSection:AddToggle({
-	Name = "Names",
-	Default = false,
-	Callback = function(Value)
 		espLib.options.names = Value
-	end    
-})
-
-TogglesSection:AddToggle({
-	Name = "Boxes",
-	Default = false,
-	Callback = function(Value)
 		espLib.options.boxes = Value
-	end    
-})
-
-TogglesSection:AddToggle({
-	Name = "Use Team Colors",
-	Default = false,
-	Callback = function(Value)
-		espLib.options.teamColor = Value
 	end    
 })
 
@@ -143,6 +121,14 @@ TogglesSection:AddToggle({
 
 local ColorsSection = VisualsTab:AddSection({
 	Name = "Color Settings"
+})
+
+ColorsSection:AddToggle({
+	Name = "Use Team Colors",
+	Default = false,
+	Callback = function(Value)
+		espLib.options.teamColor = Value
+	end    
 })
 
 ColorsSection:AddColorpicker({
