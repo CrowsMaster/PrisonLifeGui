@@ -5,6 +5,7 @@ A basic prison life GUI.
 - Change character properties
 - Change between teams
 - ESP
+- Teleports
 - Kill any player
 
 More coming soon.
