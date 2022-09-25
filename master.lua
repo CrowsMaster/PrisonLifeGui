@@ -16,8 +16,8 @@ espLib.options.chams = false
 
 -- Guns Tab
 local GunsTab = Window:MakeTab({
-	Name = "Weapons",
-	Icon = "rbxassetid://9478594148",
+	Name = "Tools",
+	Icon = "rbxassetid://484396034",
 	PremiumOnly = false
 })
 
@@ -73,12 +73,42 @@ MeleeSection:AddButton({
         Event:InvokeServer(A_1)
   	end    
 })
+
 MeleeSection:AddButton({
 	Name = "Hammer",
 	Callback = function()
       	local A_1 = game:GetService("Workspace")["Prison_ITEMS"].single.Hammer.ITEMPICKUP
         local Event = game:GetService("Workspace").Remote.ItemHandler
         Event:InvokeServer(A_1)
+    end    
+})
+
+local OtherSection = GunsTab:AddSection({
+	Name = "Other"
+})
+
+OtherSection:AddButton({
+	Name = "Key Card",
+	Callback = function()
+      	if game:GetService("Workspace")["Prison_ITEMS"].single:FindFirstChild("Key card") then
+      	    local A_1 = game:GetService("Workspace")["Prison_ITEMS"].single["Key card"].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(A_1)
+      	elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key card") then
+            OrionLib:MakeNotification({
+            Name = "Error!",
+            Content = "You already have a key card in you backpack.",
+            Image = "rbxassetid://7240801337",
+            Time = 5
+            })
+        else
+            OrionLib:MakeNotification({
+            Name = "Error!",
+            Content = "No key card on ground.",
+            Image = "rbxassetid://7240801337",
+            Time = 5
+            })
+      	end
     end    
 })
 
@@ -185,7 +215,7 @@ local OtherTab = Window:MakeTab({
 
 OtherTab:AddTextbox({
 	Name = "Kill Player",
-	Default = "Enter name here",
+	Default = "",
 	TextDisappear = true,
 	Callback = function(Value)
 		if not game.Players.LocalPlayer.Backpack:FindFirstChild("Remington 870") then
@@ -239,20 +269,55 @@ OtherTab:AddDropdown({
 	Options = {"Inmates", "Guards", "Criminals"},
 	Callback = function(Value)
 		if Value == "Inmates" then
-			local PlayerName = game:GetService("Players").LocalPlayer
-                	local TeamColor = "Bright orange"
-            		local Event = game:GetService("Workspace").Remote.loadchar
-            		Event:InvokeServer(PlayerName, TeamColor)
+		    local PlayerName = game:GetService("Players").LocalPlayer
+            local TeamColor = "Bright orange"
+            local Event = game:GetService("Workspace").Remote.loadchar
+            Event:InvokeServer(PlayerName, TeamColor)
 		elseif Value == "Guards" then
-            		local PlayerName = game:GetService("Players").LocalPlayer
-            		local TeamColor = "Bright blue"
-            		local Event = game:GetService("Workspace").Remote.loadchar
-            		Event:InvokeServer(PlayerName, TeamColor)
+            local PlayerName = game:GetService("Players").LocalPlayer
+            local TeamColor = "Bright blue"
+            local Event = game:GetService("Workspace").Remote.loadchar
+            Event:InvokeServer(PlayerName, TeamColor)
 		elseif Value == "Criminals" then
-            		local PlayerName = game:GetService("Players").LocalPlayer
-            		local TeamColor = "Really red"
-            		local Event = game:GetService("Workspace").Remote.loadchar
-            		Event:InvokeServer(PlayerName, TeamColor)
+            local PlayerName = game:GetService("Players").LocalPlayer
+            local TeamColor = "Really red"
+            local Event = game:GetService("Workspace").Remote.loadchar
+            Event:InvokeServer(PlayerName, TeamColor)
+		end
+	end    
+})
+
+OtherTab:AddDropdown({
+	Name = "Teleports",
+	Default = "",
+	Options = {"Prison - Cafeteria", "Prison - Hall", "Prison - Cells", "Prison - Yard", "Prison - Guard Room", "Prison - Entrance", "Prison - Outside", "Prison - Roof", "Prison - Secret Room", "Criminal Base - Outside", "Criminal Base - Inside", "City - Car Spawner 1", "City - Car Spawner 2"},
+	Callback = function(Value)
+		if Value == "Prison - Cafeteria" then
+		    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(886.899597, 100.53997, 2295.79663)
+		elseif Value == "Prison - Hall" then
+		    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(919.216003, 100.990005, 2372.75806)
+		elseif Value == "Prison - Cells" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(916.099121, 100.730217, 2447.09961)
+		elseif Value == "Prison - Yard" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(790.500366, 98.4999466, 2454.79907)
+		elseif Value == "Prison - Guard Room" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(832.800171, 100.490005, 2317.6001)
+		elseif Value == "Prison - Entrance" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(703.800354, 100.490005, 2280.6001)
+		elseif Value == "Prison - Outside" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(470.800354, 98.6900101, 2253.6001)
+		elseif Value == "Prison - Roof" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(820.800171, 119.490005, 2354.6001)
+		elseif Value == "Prison - Secret Room" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(690.200317, 100.690758, 2343.8501)
+		elseif Value == "Criminal Base - Outside" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-918.710571, 95.6273041, 2152.47095)
+		elseif Value == "Criminal Base - Inside" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-940.700317, 94.6287842, 2066.92578)
+		elseif Value == "City - Car Spawner 1" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-531.347717, 55.0750389, 1778.49341)
+		elseif Value == "City - Car Spawner 2" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-198.505981, 55.0750275, 1880.09399)
 		end
 	end    
 })
@@ -286,6 +351,18 @@ CharTab:AddSlider({
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.UseJumpPower = true
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
+
+CharTab:AddSlider({
+	Name = "Camer FOV",
+	Min = 60,
+	Max = 120,
+	Default = 70,
+	Increment = 1,
+	ValueName = "Field of View",
+	Callback = function(Value)
+		game.Workspace.CurrentCamera.FieldOfView = Value
 	end    
 })
 
