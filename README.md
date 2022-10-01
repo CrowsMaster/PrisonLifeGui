@@ -15,3 +15,5 @@ By doing this you will get all the updates.
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/CrowsMaster/PrisonLifeGui/main/master.lua"))()
 ```
+
+Tested on Synapse X.
