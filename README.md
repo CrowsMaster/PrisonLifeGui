@@ -8,7 +8,7 @@ A basic prison life GUI.
 - Teleports
 - Kill any player
 
-More coming soon.
+More coming soon. 
 Tested on Synapse X and KRNL.
 
 ## Use This Code to Execute the GUI
