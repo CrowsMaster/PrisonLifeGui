@@ -90,25 +90,25 @@ local OtherSection = GunsTab:AddSection({
 OtherSection:AddButton({
 	Name = "Key Card",
 	Callback = function()
-      	if game:GetService("Workspace")["Prison_ITEMS"].single:FindFirstChild("Key card") then
-      	    local A_1 = game:GetService("Workspace")["Prison_ITEMS"].single["Key card"].ITEMPICKUP
-            local Event = game:GetService("Workspace").Remote.ItemHandler
-            Event:InvokeServer(A_1)
-      	elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key card") then
+        if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key Card") then
             OrionLib:MakeNotification({
-            Name = "Error!",
-            Content = "You already have a key card in you backpack.",
+            Name = "Error",
+            Content = "You already have a key card in your backpack.",
             Image = "rbxassetid://7240801337",
             Time = 5
             })
+        elseif game:GetService("Workspace").Prison_ITEMS.single:FindFirstChild("Key card") then
+            local A_1 = game:GetService("Workspace")["Prison_ITEMS"].single["Key card"].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(A_1)
         else
             OrionLib:MakeNotification({
-            Name = "Error!",
+            Name = "Error",
             Content = "No key card on ground.",
             Image = "rbxassetid://7240801337",
             Time = 5
             })
-      	end
+        end
     end    
 })
 
@@ -355,7 +355,7 @@ CharTab:AddSlider({
 })
 
 CharTab:AddSlider({
-	Name = "Camer FOV",
+	Name = "Camera FOV",
 	Min = 60,
 	Max = 120,
 	Default = 70,
