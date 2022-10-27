@@ -11,8 +11,8 @@ A basic prison life GUI.
 More coming soon. 
 Tested on Synapse X and KRNL.
 
-## Use This Code to Execute the GUI
-By doing this you will get all the updates.
+## Execute the GUI
+Get all the updates by using this code.
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/CrowsMaster/PrisonLifeGui/main/master.lua"))()
 ```
