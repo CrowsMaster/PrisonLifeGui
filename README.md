@@ -12,7 +12,7 @@ More coming soon.
 Tested on Synapse X and KRNL.
 
 ## Updates
-- Changed the UI library since old one is not gonna get updates anymore (probably) You can still find it in old.lua
+- Changed the UI library since old one is not gonna get updates anymore (probably). You can still find it in old.lua
 
 ## Execute the GUI
 Get all the updates by using this code.
