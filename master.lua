@@ -123,7 +123,7 @@ local Visuals_TogglesSection = VisualsTab:CreateSection("Toggles")
 local ESPToggle = VisualsTab:CreateToggle({
 	Name = "ESP",
 	CurrentValue = false,
-	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Toggle1", 
 	Callback = function(Value)
 		EspLib.options.enabled = Value
 		EspLib.options.names = Value
@@ -134,7 +134,7 @@ local ESPToggle = VisualsTab:CreateToggle({
 local DistanceToggle = VisualsTab:CreateToggle({
 	Name = "Distance",
 	CurrentValue = false,
-	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Toggle1", 
 	Callback = function(Value)
 		EspLib.options.distance = Value
 	end,
@@ -143,7 +143,7 @@ local DistanceToggle = VisualsTab:CreateToggle({
 local TracersToggle = VisualsTab:CreateToggle({
 	Name = "Tracers",
 	CurrentValue = false,
-	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Toggle1", 
 	Callback = function(Value)
 		EspLib.options.tracers = Value
 	end,
@@ -155,7 +155,7 @@ local Visuals_ColorsSection = VisualsTab:CreateSection("Color Settings")
 local TeamColorsToggle = VisualsTab:CreateToggle({
 	Name = "Use Team Colors",
 	CurrentValue = false,
-	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Toggle1", 
 	Callback = function(Value)
 		EspLib.options.teamColor = Value
 	end,
@@ -170,7 +170,7 @@ local TracersDropdown = VisualsTab:CreateDropdown({
 	Name = "Tracers Origin",
 	Options = {"Bottom", "Mouse", "Top"},
 	CurrentOption = "",
-	Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Dropdown1", 
 	Callback = function(Option)
 	  	  EspLib.options.tracerOrigin = Option
 	end,
@@ -233,7 +233,7 @@ local TeamsDropdown = OtherTab:CreateDropdown({
 	Name = "Select Team",
 	Options = {"Inmates", "Guards", "Criminals"},
 	CurrentOption = "",
-	Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Dropdown1",
 	Callback = function(Option)
 	  	  if Option == "Inmates" then
 		    local PlayerName = game:GetService("Players").LocalPlayer
@@ -258,7 +258,7 @@ local TeleportsDropdown = OtherTab:CreateDropdown({
 	Name = "Teleport",
 	Options = {"Prison - Cafeteria", "Prison - Hall", "Prison - Cells", "Prison - Yard", "Prison - Guard Room", "Prison - Entrance", "Prison - Outside", "Prison - Roof", "Prison - Secret Room", "Criminal Base - Outside", "Criminal Base - Inside", "City - Car Spawner 1", "City - Car Spawner 2"},
 	CurrentOption = "",
-	Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Dropdown1",
 	Callback = function(Option)
 	  	 if Option == "Prison - Cafeteria" then
 		    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(886.899597, 100.53997, 2295.79663)
@@ -299,7 +299,7 @@ local WalkspeedSlider = CharacterTab:CreateSlider({
 	Increment = 2,
 	Suffix = "player walkspeed",
 	CurrentValue = 16,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Slider1",
 	Callback = function(Value)
 		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Value
 	end,
@@ -311,7 +311,7 @@ local JumpPowerSlider = CharacterTab:CreateSlider({
 	Increment = 1,
 	Suffix = "player jump power",
 	CurrentValue = 50,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Slider1",
 	Callback = function(Value)
 	    game:GetService("Players").LocalPlayer.Character.Humanoid.UseJumpPower = true
 		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Value
@@ -324,10 +324,37 @@ local FOVSlider = CharacterTab:CreateSlider({
 	Increment = 2,
 	Suffix = "field of view",
 	CurrentValue = 70,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "Slider1",
 	Callback = function(Value)
 	    workspace.CurrentCamera.FieldOfView = Value
 	end,
+})
+
+local Noclipping = nil
+local Clip = nil
+local NoclipButton = CharacterTab:CreateToggle({
+	Name = "Noclip",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		Clip = false
+        wait(0.1)
+        local function NoclipLoop()
+            if Clip == false and game:GetService("Players").LocalPlayer.Character ~= nil then
+                for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+                    if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+                        child.CanCollide = false
+                    end
+                end
+            end
+        end
+        if Value == true then
+            Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+        else
+            Noclipping:Disconnect()
+            Clip = true
+        end
+    end,
 })
 
 local Button = CharacterTab:CreateButton({
