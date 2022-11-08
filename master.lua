@@ -52,7 +52,12 @@ local M4A1Button = ToolsTab:CreateButton({
             local Event = game:GetService("Workspace").Remote.ItemHandler
             Event:InvokeServer(A_1)
         else
-            Rayfield:Notify("Can't Pick Up Weapon", "You do not have the required gamepass to pick up this weapon.", 10876993533)
+            Rayfield:Notify({
+                Title = "Can't Pick Up Weapon",
+                Content = "You do not have the required gamepass to pick up this weapon.",
+                Duration = 5,
+                Image = 10876993533,
+            })
         end
 	end,
 })
@@ -102,21 +107,31 @@ local Tools_OtherSection = ToolsTab:CreateSection("Other")
 local KeyCardButton = ToolsTab:CreateButton({
 	Name = "Key Card",
 	Callback = function()
-		if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key card") ~= nil then
-            Rayfield:Notify("Can't Pick Up Key Card", "You already have a key card in your backpack.", 10876993533)
-        else
-            if game:GetService("Workspace").Prison_ITEMS.single:FindFirstChild("Key card") then
+		if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key Card") then
+            Rayfield:Notify({
+                Title = "Can't Pick Up Key Card",
+                Content = "You already have a key card in your backpack.",
+                Duration = 5,
+                Image = 10876993533,
+            })
+        elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key Card") == nil then
+            if game:GetService("Workspace").Prison_ITEMS.single:FindFirstChild("Key card") ~= nil then
                 local A_1 = game:GetService("Workspace")["Prison_ITEMS"].single["Key card"].ITEMPICKUP
                 local Event = game:GetService("Workspace").Remote.ItemHandler
                 Event:InvokeServer(A_1)
             else
-                Rayfield:Notify("Can't Pick Up Key Card", "There are no key cards on the ground. Please try again later.", 10876993533)
+                Rayfield:Notify({
+                    Title = "Can't Pick Up Key Card",
+                    Content = "There are no key cards on the ground. Please try again later.",
+                    Duration = 5,
+                    Image = 10876993533,
+                })
             end
         end
 	end,
 })
 
-local RiotShieldButton = ToolsTab:CreateButton({
+local M4A1Button = ToolsTab:CreateButton({
 	Name = "Riot Shield",
 	Callback = function()
 		if game:GetService("MarketplaceService"):UserOwnsGamePassAsync(game:GetService("Players").LocalPlayer.UserId, 96651) == true then
@@ -124,7 +139,12 @@ local RiotShieldButton = ToolsTab:CreateButton({
             local Event = game:GetService("Workspace").Remote.ItemHandler
             Event:InvokeServer(A_1)
         else
-            Rayfield:Notify("Can't Pick Up Tool", "You do not have the required gamepass to pick up this tool.", 10876993533)
+            Rayfield:Notify({
+                Title = "Can't Pick Up Tool",
+                Content = "You do not have the required gamepass to pick up this tool.",
+                Duration = 5,
+                Image = 10876993533,
+            })
         end
 	end,
 })
@@ -206,35 +226,35 @@ local KillPlrInput = OtherTab:CreateInput({
 		end
 		wait(.2)
 		local A_1 =  {
-            [1] =  {
-            ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-306.78546142578125, -136.98300170898438, 217.06759643554688)), 
-            ["Distance"] = 17.318809509277344, 
-            ["Cframe"] = CFrame.new(407.552673, 84.9455109, 2427.84814, 0.646553576, -0.0630896017, -0.760255337, 0, 0.996574521, -0.0827004761, 0.762868702, 0.0534702875, 0.644338727), 
-            ["Hit"] = game:GetService("Workspace")[Text].Head
+	        [1] =  {
+	        ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-306.78546142578125, -136.98300170898438, 217.06759643554688)), 
+	        ["Distance"] = 17.318809509277344, 
+	        ["Cframe"] = CFrame.new(407.552673, 84.9455109, 2427.84814, 0.646553576, -0.0630896017, -0.760255337, 0, 0.996574521, -0.0827004761, 0.762868702, 0.0534702875, 0.644338727), 
+	        ["Hit"] = game:GetService("Workspace")[Text].Head
             }, 
-            [2] =  {
-            ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-303.5357360839844, -151.40371704101562, 211.99757385253906)), 
-            ["Distance"] = 17.60354232788086, 
-            ["Cframe"] = CFrame.new(407.438477, 84.5028534, 2427.8606, 0.640910029, -0.101060227, -0.760934412, -7.45057971e-09, 0.991295695, -0.13165468, 0.767615974, 0.0843788087, 0.635331333), 
-            ["Hit"] = game:GetService("Workspace")[Text].Head
+	        [2] =  {
+	        ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-303.5357360839844, -151.40371704101562, 211.99757385253906)), 
+	        ["Distance"] = 17.60354232788086, 
+	        ["Cframe"] = CFrame.new(407.438477, 84.5028534, 2427.8606, 0.640910029, -0.101060227, -0.760934412, -7.45057971e-09, 0.991295695, -0.13165468, 0.767615974, 0.0843788087, 0.635331333), 
+	        ["Hit"] = game:GetService("Workspace")[Text].Head
             }, 
-            [3] =  {
-            ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-315.03363037109375, -144.1891326904297, 199.90826416015625)), 
-            ["Distance"] = 18.67498016357422, 
-            ["Cframe"] = CFrame.new(406.729614, 84.4863129, 2427.83203, 0.600598335, -0.100641936, -0.793191493, -7.4505806e-09, 0.992046237, -0.125873089, 0.799550891, 0.0755991787, 0.595821381), 
-            ["Hit"] = game:GetService("Workspace")[Text].Head
+	        [3] =  {
+	        ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-315.03363037109375, -144.1891326904297, 199.90826416015625)), 
+	        ["Distance"] = 18.67498016357422, 
+	        ["Cframe"] = CFrame.new(406.729614, 84.4863129, 2427.83203, 0.600598335, -0.100641936, -0.793191493, -7.4505806e-09, 0.992046237, -0.125873089, 0.799550891, 0.0755991787, 0.595821381), 
+	        ["Hit"] = game:GetService("Workspace")[Text].Head
             }, 
-            [4] =  {
-            ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-300.7127990722656, -155.8857879638672, 212.7708740234375)), 
-            ["Distance"] = 17.497360229492188, 
-            ["Cframe"] = CFrame.new(407.529755, 84.4034576, 2427.86426, 0.646338284, -0.109738067, -0.755118787, 0, 0.989604652, -0.143814847, 0.763051033, 0.0929530412, 0.63961935), 
-            ["Hit"] = game:GetService("Workspace")[Text].Head
+	        [4] =  {
+        	["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-300.7127990722656, -155.8857879638672, 212.7708740234375)), 
+	        ["Distance"] = 17.497360229492188, 
+	        ["Cframe"] = CFrame.new(407.529755, 84.4034576, 2427.86426, 0.646338284, -0.109738067, -0.755118787, 0, 0.989604652, -0.143814847, 0.763051033, 0.0929530412, 0.63961935), 
+	        ["Hit"] = game:GetService("Workspace")[Text].Head
             }, 
-            [5] =  {
-            ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-310.412353515625, -150.8854217529297, 202.18251037597656)), 
-            ["Distance"] = 18.405447006225586, 
-            ["Cframe"] = CFrame.new(406.929382, 84.3506622, 2427.83936, 0.611593544, -0.112707764, -0.783102989, 0, 0.989801049, -0.142456681, 0.791172206, 0.0871255845, 0.605355918), 
-            ["Hit"] = game:GetService("Workspace")[Text].Head
+	        [5] =  {
+	        ["RayObject"] = Ray.new(Vector3.new(415.72125244140625, 90.8162612915039, 2422.989990234375), Vector3.new(-310.412353515625, -150.8854217529297, 202.18251037597656)), 
+	        ["Distance"] = 18.405447006225586, 
+	        ["Cframe"] = CFrame.new(406.929382, 84.3506622, 2427.83936, 0.611593544, -0.112707764, -0.783102989, 0, 0.989801049, -0.142456681, 0.791172206, 0.0871255845, 0.605355918), 
+	        ["Hit"] = game:GetService("Workspace")[Text].Head
             }
         }
         local A_2 = game.Players.LocalPlayer.Backpack["Remington 870"]
@@ -347,7 +367,7 @@ local FOVSlider = CharacterTab:CreateSlider({
 
 local Noclipping = nil
 local Clip = nil
-local NoclipToggle = CharacterTab:CreateToggle({
+local NoclipButton = CharacterTab:CreateToggle({
 	Name = "Noclip",
 	CurrentValue = false,
 	Flag = "Toggle1",
@@ -365,21 +385,16 @@ local NoclipToggle = CharacterTab:CreateToggle({
         end
         if Value == true then
             Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
-        elseif Value == false then
+        else
             Noclipping:Disconnect()
             Clip = false
         end
-        
-        game:GetService("Players").LocalPlayer.Character.Humanoid.Died:Connect(function()
-            Noclipping:Disconnect()
-            Clip = false
-            NoclipToggle:Set(false)
-        end)
     end,
 })
-
 game:GetService("Players").LocalPlayer.Character.Humanoid.Died:Connect(function()
-    NoclipToggle:Set(false)
+    Noclipping:Disconnect()
+    Clip = false
+    NoclipButton:Set(false)
 end)
 
 local Button = CharacterTab:CreateButton({
