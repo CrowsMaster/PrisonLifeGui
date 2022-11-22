@@ -8,9 +8,6 @@ A basic prison life GUI.
 - Teleports
 - Kill any player
 
-More coming soon. 
-Tested on Synapse X and KRNL.
-
 ## Updates
 - Added icons to tabs.
 - Added noclip toggle to Character tab.
